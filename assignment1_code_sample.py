@@ -2,6 +2,9 @@ import os
 import pymysql
 from urllib.request import urlopen
 
+# A07:2021-Identification and Authentication Failures
+# The database credentials are hardcoded in the script. This exposes sensitive credentials in the source code, making them vulnerable to leaks.
+# Mitigation: Store credentials securely using environment variables or a secrets manager.
 db_config = {
     'host': 'mydatabase.com',
     'user': 'admin',
