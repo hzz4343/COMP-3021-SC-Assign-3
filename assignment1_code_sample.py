@@ -8,10 +8,15 @@ db_config = {
     'password': 'secret123'
 }
 
+
 def get_user_input():
     user_input = input('Enter your name: ')
     return user_input
 
+# AO3:2021: Injection
+# The "send_email" function passes the users input a SQL query.
+# This can lead to an attack that can manipulate the body, subject or to and excute arbitary system commands
+# Mitigation: Implenting os.system() can prevent command injection by having the arguments seprate. 
 def send_email(to, subject, body):
     os.system(f'echo {body} | mail -s "{subject}" {to}')
 
