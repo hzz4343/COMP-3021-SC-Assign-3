@@ -20,6 +20,12 @@ def get_user_input():
 def send_email(to, subject, body):
     os.system(f'echo {body} | mail -s "{subject}" {to}')
 
+
+# A04: Insecure design
+# The use of "HTTP" is more vulernable to attacks.
+# This exposure can call the request "MITM" or man-in-the-middle attack which allows attackers to grab data and modify it. 
+# Mitgation: Use "HTTPS" as it is more secure and verifies the servers SSL certificate. 
+# Mitgation 2: Integrate security language and controls into user stories
 def get_data():
     url = 'http://insecure-api.com/get-data'
     data = urlopen(url).read().decode()
