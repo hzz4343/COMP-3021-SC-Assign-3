@@ -11,6 +11,9 @@ db_config = {
     'password': 'secret123'
 }
 
+# A03:2021-Injection
+# The script does not validate or sanitize user input before using it. This can lead to XSS (Cross-Site Scripting) attacks.
+# Mitigation: Sanitize user input by removing dangerous characters, for example, we can put "return html.escape(user_input)".
 def get_user_input():
     user_input = input('Enter your name: ')
     return user_input
