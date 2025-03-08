@@ -26,6 +26,16 @@ def get_data():
     data = urlopen(url).read().decode()
     return data
 
+# A03:2021 – Injection
+# The save_to_db() function directly concatenates user input into an SQL query, If data contains malicious SQL ('; DROP TABLE mytable; --), it could lead to data loss or database compromise.
+# Mitigation: Use parameterized queries to prevent SQL injection.
+    # query = "INSERT INTO mytable (column1, column2) VALUES (%s, %s)"
+    # connection = pymysql.connect(**db_config)
+    # cursor = connection.cursor()
+    # cursor.execute(query, (data, 'Another Value'))
+    # connection.commit()
+    # cursor.close()
+    # connection.close()
 def save_to_db(data):
     query = f"INSERT INTO mytable (column1, column2) VALUES ('{data}', 'Another Value')"
     connection = pymysql.connect(**db_config)
